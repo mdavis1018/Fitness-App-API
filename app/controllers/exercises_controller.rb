@@ -1,46 +1,46 @@
 class ExercisesController < ApplicationController
   def index 
-    @excercises = Excercise.all
-    render template: "excercises/index"
+    @exercises = Exercise.all
+    render json: @exercises
     end
   
     def show
-    @excercise = Excercise.find_by(id: params[:id])
-    render template: "excercises/show"
+    @exercise = Exercise.find_by(id: params[:id])
+    render template: "exercises/show"
     end
   
     def new
-      @excercise = Excercise.new
-      render template: "excercises/new"
+      @exercise = Exercise.new
+      render template: "exercises/new"
     end
   
     def create
-      @excercise = Excercise.new(
-        name: params[:excercise][:name],
-        description: params[:excercise][:description],
-        excercise_category_id: params[:excercise][:excercise_category_id],
+      @exercise = Exercise.new(
+        name: params[:exercise][:name],
+        description: params[:exercise][:description],
+        exercise_category_id: params[:exercise][:exercise_category_id],
       )
-      @excercise.save
-      redirect_to "/excercises"
+      @exercise.save
+      redirect_to "/exercises"
     end
   
     def edit
-      @excercise = Excercise.find_by(id: params[:id])
-      render template: "excercises/edit"
+      @exercise = Exercise.find_by(id: params[:id])
+      render template: "exercises/edit"
     end
   
     def update
-      @excercise = Excercise.find_by(id: params[:id])
-      @excercise.name = params[:excercise][:name]
-      @excercise.description = params[:excercise][:description]
-      @excercise.excercise_category_id = params[:excercise][:excercise_category_id]
-      @excercise.save
-      redirect_to "/excercises"
+      @exercise = Exercise.find_by(id: params[:id])
+      @exercise.name = params[:exercise][:name]
+      @exercise.description = params[:exercise][:description]
+      @exercise.exercise_category_id = params[:exercise][:exercise_category_id]
+      @exercise.save
+      redirect_to "/exercises"
     end
   
     def destroy
-      @excercise = Excercise.find_by(id: params[:id])
-      @excercise.destroy
-      redirect_to "/excercises", status: :see_other
+      @exercise = Exercise.find_by(id: params[:id])
+      @exercise.destroy
+      redirect_to "/exercises", status: :see_other
     end
 end
